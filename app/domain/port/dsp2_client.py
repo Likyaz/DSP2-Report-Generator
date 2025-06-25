@@ -33,7 +33,7 @@ class Dsp2Client(ABC):
 
     @abstractmethod
     def get_transactions(
-        self, token: str, account_id: str, page: int, limit: int
+        self, token: str, account_id: str, page: int, count: int
     ) -> list[Transaction]:
         """Get account transactions"""
         pass

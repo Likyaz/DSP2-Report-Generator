@@ -65,10 +65,10 @@ class Dsp2ApiAdapter(Dsp2Client):
         return BalanceSerializer.from_api_list(data)
 
     def get_transactions(
-        self, token: str, account_id: str, page: int, limit: int
+        self, token: str, account_id: str, page: int, count: int
     ) -> list[Transaction]:
         headers = {"Authorization": f"Bearer {token}"}
-        params = {"page": page, "limit": limit}
+        params = {"page": page, "count": count}
         response = self.session.get(
             f"{self.BASE_URL}/stet/account/{account_id}/transaction",
             headers=headers,
