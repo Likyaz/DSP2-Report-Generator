@@ -24,3 +24,15 @@ class AccountSerializer:
             AccountSerializer.from_api_response(account_data)
             for account_data in api_data_list
         ]
+
+    @staticmethod
+    def to_dict(account: Account) -> Dict[str, Any]:
+        """Convert Account domain object to dictionary"""
+        return {
+            "id": account.id,
+            "type": account.type.value,
+            "usage": account.usage.value,
+            "iban": account.iban,
+            "name": account.name,
+            "currency": account.currency,
+        }

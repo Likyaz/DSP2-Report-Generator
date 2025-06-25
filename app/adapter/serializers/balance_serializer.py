@@ -18,3 +18,14 @@ class BalanceSerializer:
             )
             for api_data in api_data_list
         ]
+
+    @staticmethod
+    def to_dict(balance: Balance) -> Dict[str, Any]:
+        """Convert Balance domain object to dictionary"""
+        return {
+            "id": balance.id,
+            "name": balance.name,
+            "amount": balance.amount,
+            "currency": balance.currency,
+            "type": balance.type.value,
+        }

@@ -23,3 +23,17 @@ class TransactionSerializer:
             )
             for api_data in api_data_list
         ]
+
+    @staticmethod
+    def to_dict(transaction: Transaction) -> Dict[str, Any]:
+        """Convert Transaction domain object to dictionary"""
+        return {
+            "id": transaction.id,
+            "label": transaction.label,
+            "amount": transaction.amount,
+            "crdt_dbit_indicator": transaction.crdt_dbit_indicator.value,
+            "status": transaction.status.value,
+            "currency": transaction.currency,
+            "date_operation": transaction.date_operation,
+            "date_processed": transaction.date_processed,
+        }
