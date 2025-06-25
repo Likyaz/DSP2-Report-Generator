@@ -1,5 +1,6 @@
 from datetime import date
 import os
+import json
 
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import Response
@@ -8,7 +9,7 @@ from app.domain.service.report_service import ReportService
 from app.adapter.get_dsp2_api import get_dsp2_api
 from app.domain.service.dsp2_service import Dsp2Service
 from app.adapter.serializers.account_serializer import AccountSerializer
-
+from app.domain.service.account_consistency_validator import AccountConsistencyValidator
 
 router = APIRouter()
 
@@ -77,4 +78,17 @@ async def get_report_csv(
     except Exception as e:
         raise HTTPException(
             status_code=500, detail=f"Error generating CSV report: {str(e)}"
+        )
+
+
+@router.get("/consistency")
+async def get_consistency(
+    dsp2_service: Dsp2Service = Depends(get_dsp2_service),
+):
+    try:
+        consistency = AccountConsistencyValidator.validate(dsp2_service)
+        return Response(content=json.dumps(consistency), media_type="application/json")
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Error getting consistency: {str(e)}"
         )
