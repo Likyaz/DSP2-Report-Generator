@@ -18,6 +18,7 @@ uv pip install -r requirements.txt
 #### .env Configuration
 Copy the .env.example file, rename it to .env, and fill in the required variables.
 
+To start the API server, run `uvicorn app.main:app --reload`
 
 #### Available Routes
 - GET `/account`
