@@ -34,6 +34,6 @@ Same as above, but returns the report as a CSV file.
 Returns consistency information between account balances and the sum of all related transactions.
 
 
-### Partie Interface de cmd
+### Command-line interface
 Just run the script `python3 run_console.py` and let it guide you step by step.
 
